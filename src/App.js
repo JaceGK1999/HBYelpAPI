@@ -13,17 +13,21 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchBusinesses(zip, search);
+      const data = await fetchBusinesses();
       setBusinesses(data);
       setLoading(false);
     };
     fetchData();
-  }, [zip, search]);
+  }, []);
 
   // TODO -- add event for button click to handle calling fetchBusinesses with zip / search
-  const handleSearch = () => {
-    setZip();
-    setSearch();
+  const handleSearch = async () => {
+    const searchData = await fetchBusinesses(zip, search);
+    setBusinesses(searchData);
+
+    
+    // setZip();
+    // setSearch();
   };
   return (
     <div className="App">
