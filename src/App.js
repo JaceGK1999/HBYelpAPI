@@ -25,7 +25,6 @@ function App() {
     const searchData = await fetchBusinesses(zip, search);
     setBusinesses(searchData);
 
-    
     // setZip();
     // setSearch();
   };
@@ -35,13 +34,13 @@ function App() {
       <div className="query-form">
         <div className="form-control">
           <label>Zip:</label>
-          <input type="text" placeholder="zip" />
+          <input type="text" placeholder="zip" onChange={(e) => setZip(e.target.value)} />
         </div>
         <div className="form-control">
+          <input type="text" placeholder="Search..." onChange={(e) => setSearch(e.target.value)} />
           <label>Query:</label>
-          <input type="text" placeholder="Search..." />
         </div>
-        <button>Search</button>
+        <button onClick={handleSearch}>Search</button>
       </div>
       {loading && <div className="loader"></div>}
       {!loading && businesses.map((b) => <RestaurantListItem key={b.id} {...b} />)}
