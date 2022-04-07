@@ -6,20 +6,25 @@ import { fetchBusinesses } from './services/yelp';
 function App() {
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [zip, setZip] = useState('');
+  const [search, setSearch] = useState('');
 
   // TODO -- add state for zip / search and add event listeners to the inputs
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchBusinesses();
+      const data = await fetchBusinesses(zip, search);
       setBusinesses(data);
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [zip, search]);
 
   // TODO -- add event for button click to handle calling fetchBusinesses with zip / search
-
+  const handleSearch = () => {
+    setZip();
+    setSearch();
+  };
   return (
     <div className="App">
       <h1>Alchemy Restaurant Finder</h1>
